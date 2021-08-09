@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class SocketClient {
-	public final static String MESSAGE_FORMAT = "No.%s %s";
+	final static String MESSAGE_FORMAT = "No.%s %s";
 	private int order;
 
 	public SocketClient(int order){
@@ -17,7 +17,7 @@ public class SocketClient {
 	}
 
 	public void run()throws IOException, InterruptedException{
-		Socket socket = new Socket("127.0.0.1", Server.PORT);
+		Socket socket = new Socket("127.0.0.1", Server.PORT); // 直接使用Socket会令服务端陷入Read事件的循环。
 		OutputStream out = socket.getOutputStream();
 		ZonedDateTime zdt = ZonedDateTime.now();
 		var formatter = DateTimeFormatter.ofPattern("mm:ss.SSS");
