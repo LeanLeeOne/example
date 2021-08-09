@@ -9,11 +9,6 @@ import java.nio.channels.SocketChannel;
 
 public class Cyc2018Server extends Server {
 
-	public static void main(String[] args) throws IOException {
-		Server server = new Cyc2018Server();
-		server.run();
-	}
-
 	@Override
 	public void bind() throws IOException {
 		ServerSocket serverSocket = serverSocketChannel.socket();

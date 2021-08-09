@@ -10,11 +10,6 @@ public class HufeifeiServer extends Server {
 
 	private static final String CLOSE_ACTION = "close";
 
-	public static void main(String[] args) throws IOException {
-		Server server = new HufeifeiServer();
-		server.run();
-	}
-
 	@Override
 	public void bind() throws IOException {
 		serverSocketChannel.bind(new InetSocketAddress(8888));

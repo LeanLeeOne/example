@@ -7,11 +7,6 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class SocketClient {
-	public static void main(String[] args) throws IOException, InterruptedException {
-		SocketClient client = new SocketClient(0);
-		client.run();
-	}
-
 	public final static String MESSAGE_FORMAT = "No.%s %s";
 	private int order;
 
