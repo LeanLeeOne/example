@@ -15,11 +15,11 @@ public abstract class Server {
 	protected Selector selector;
 	protected ServerSocketChannel serverSocketChannel;
 
-	public void init() throws IOException {
+	protected void init() throws IOException {
 		selector = Selector.open();
 		serverSocketChannel = ServerSocketChannel.open();
 		serverSocketChannel.configureBlocking(false);
-		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT); // 阅读源码可知，ServerSocketChannel只允许注册Accept事件。
 	}
 
 	public void run() throws IOException {
@@ -27,8 +27,8 @@ public abstract class Server {
 		bind();
 		while (true) {
 			int select = selector.select();
-			Set<SelectionKey> selectedKeys = selector.selectedKeys();
-			Iterator<SelectionKey> iterator = selectedKeys.iterator();
+			Set<SelectionKey> keys = selector.selectedKeys();
+			Iterator<SelectionKey> iterator = keys.iterator();
 
 			while (iterator.hasNext()) {
 				SelectionKey key = iterator.next();
@@ -66,6 +66,7 @@ public abstract class Server {
 		socketChannel.register(key.selector(), SelectionKey.OP_READ);
 	}
 
+	// todo 服务端不会触发Connect事件
 	public void onConnect(SelectionKey key) throws IOException {
 		SocketChannel socketChannel = (SocketChannel) key.channel();
 		if (socketChannel.isConnectionPending()) {
