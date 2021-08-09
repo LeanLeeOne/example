@@ -12,7 +12,7 @@ public class Cyc2018Server extends Server {
 	@Override
 	public void bind() throws IOException {
 		ServerSocket serverSocket = serverSocketChannel.socket();
-		serverSocket.bind(new InetSocketAddress(8888));
+		serverSocket.bind(new InetSocketAddress(Server.PORT));
 	}
 
 	@Override

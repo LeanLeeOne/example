@@ -1,5 +1,7 @@
 package com.leanlee.example.nio.client;
 
+import com.leanlee.example.nio.server.Server;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -15,7 +17,7 @@ public class SocketClient {
 	}
 
 	public void run()throws IOException, InterruptedException{
-		Socket socket = new Socket("127.0.0.1", 8888);
+		Socket socket = new Socket("127.0.0.1", Server.PORT);
 		OutputStream out = socket.getOutputStream();
 		ZonedDateTime zdt = ZonedDateTime.now();
 		var formatter = DateTimeFormatter.ofPattern("mm:ss.SSS");

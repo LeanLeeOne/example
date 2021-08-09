@@ -12,7 +12,7 @@ public class HufeifeiServer extends Server {
 
 	@Override
 	public void bind() throws IOException {
-		serverSocketChannel.bind(new InetSocketAddress(8888));
+		serverSocketChannel.bind(new InetSocketAddress(Server.PORT));
 	}
 
 	@Override

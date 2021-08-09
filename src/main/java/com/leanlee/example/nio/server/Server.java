@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 public abstract class Server {
+	public static final int PORT = 8888;
+
 	protected Selector selector;
 	protected ServerSocketChannel serverSocketChannel;
 
