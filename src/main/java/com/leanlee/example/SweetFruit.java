@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.leanlee.example;
 
 @Aspect2
 public class SweetFruit implements Fruit {

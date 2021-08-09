@@ -1,4 +1,4 @@
-package com.example.demo.configuration;
+package com.leanlee.example.configuration;
 
 public class Lemon {
 	public Lemon() {

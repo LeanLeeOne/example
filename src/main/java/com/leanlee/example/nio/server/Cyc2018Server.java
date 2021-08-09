@@ -1,23 +1,23 @@
-package com.example.demo.nio.server;
+package com.leanlee.example.nio.server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-public class HufeifeiServer extends Server {
-
-	private static final String CLOSE_ACTION = "close";
+public class Cyc2018Server extends Server {
 
 	public static void main(String[] args) throws IOException {
-		Server server = new HufeifeiServer();
+		Server server = new Cyc2018Server();
 		server.run();
 	}
 
 	@Override
 	public void bind() throws IOException {
-		serverSocketChannel.bind(new InetSocketAddress(8888));
+		ServerSocket serverSocket = serverSocketChannel.socket();
+		serverSocket.bind(new InetSocketAddress(8888));
 	}
 
 	@Override
@@ -25,22 +25,22 @@ public class HufeifeiServer extends Server {
 		SocketChannel channel = (SocketChannel) key.channel();
 		ByteBuffer buffer = (ByteBuffer) key.attachment();
 
-		channel.read(buffer);
-		String receiveString = new String(buffer.array());
-		System.out.println("Receive string: " + receiveString);
-		if (CLOSE_ACTION.equals(receiveString.trim())) {
-			channel.close();
-			System.out.println("Not accepting client messages anymore");
-		} else {
+		while (true) { // todo 这个循环
+			StringBuilder data = new StringBuilder();
+			int n = channel.read(buffer);
+			if (n == -1) {
+				break;
+			}
 			buffer.flip();
 			int limit = buffer.limit();
 			char[] dst = new char[limit];
 			for (int i = 0; i < limit; i++) {
 				dst[i] = (char) buffer.get(i);
 			}
-			System.out.println(dst);
+			data.append(dst);
+			System.out.println(data.toString());
 			buffer.clear();
 		}
+		channel.close();
 	}
-
 }

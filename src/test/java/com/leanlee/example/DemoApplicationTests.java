@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.leanlee.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

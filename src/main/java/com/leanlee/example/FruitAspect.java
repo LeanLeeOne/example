@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.leanlee.example;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -9,22 +9,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class FruitAspect {
 
-	@Before("within(com.example.demo.SweetFruit)")
+	@Before("within(com.leanlee.example.SweetFruit)")
 	void within() {
 		System.out.println("within");
 	}
 
 	@Before("target(f)")
-	void target(JoinPoint joinPoint, com.example.demo.Fruit f) {
+	void target(JoinPoint joinPoint, Fruit f) {
 		System.out.println("target");
 	}
 
-	@Before("@within(com.example.demo.Aspect2)")
+	@Before("@within(com.leanlee.example.Aspect2)")
 	void atWithin() {
 		System.out.println("@within");
 	}
 
-	@Before("within(com.example.demo.*) && (@target(com.example.demo.Aspect1))")
+	@Before("within(com.example.demo.*) && (@target(com.leanlee.example.Aspect1))")
 	void atTarget() {
 		System.out.println("@target");
 	}
