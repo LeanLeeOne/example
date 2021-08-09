@@ -22,18 +22,13 @@ public class HufeifeiServer extends Server {
 
 		channel.read(buffer);
 		String receiveString = new String(buffer.array());
-		System.out.println("Receive string: " + receiveString);
 		if (CLOSE_ACTION.equals(receiveString.trim())) {
 			channel.close();
 			System.out.println("Not accepting client messages anymore");
 		} else {
+			System.out.println(receiveString);
 			buffer.flip();
-			int limit = buffer.limit();
-			char[] dst = new char[limit];
-			for (int i = 0; i < limit; i++) {
-				dst[i] = (char) buffer.get(i);
-			}
-			System.out.println(dst);
+			channel.write(buffer);
 			buffer.clear();
 		}
 	}
