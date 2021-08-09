@@ -21,8 +21,9 @@ public class HufeifeiServer extends Server {
 	}
 
 	@Override
-	public void onRead(ByteBuffer buffer, SelectionKey key) throws IOException {
+	public void onRead(SelectionKey key) throws IOException {
 		SocketChannel channel = (SocketChannel) key.channel();
+		ByteBuffer buffer = (ByteBuffer) key.attachment();
 
 		channel.read(buffer);
 		String receiveString = new String(buffer.array());

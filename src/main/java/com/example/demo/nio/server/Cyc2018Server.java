@@ -21,8 +21,9 @@ public class Cyc2018Server extends Server {
 	}
 
 	@Override
-	public void onRead(ByteBuffer buffer, SelectionKey key) throws IOException {
+	public void onRead(SelectionKey key) throws IOException {
 		SocketChannel channel = (SocketChannel) key.channel();
+		ByteBuffer buffer = (ByteBuffer) key.attachment();
 
 		while (true) { // todo 这个循环
 			StringBuilder data = new StringBuilder();

@@ -12,22 +12,19 @@ import java.util.Set;
 public abstract class Server {
 	protected Selector selector;
 	protected ServerSocketChannel serverSocketChannel;
-	protected ByteBuffer buffer;
-
 
 	public void init() throws IOException {
 		selector = Selector.open();
 		serverSocketChannel = ServerSocketChannel.open();
 		serverSocketChannel.configureBlocking(false);
 		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-		buffer = ByteBuffer.allocate(1024);
 	}
 
 	public void run() throws IOException {
 		init();
 		bind();
 		while (true) {
-			selector.select();
+			int select = selector.select();
 			Set<SelectionKey> selectedKeys = selector.selectedKeys();
 			Iterator<SelectionKey> iterator = selectedKeys.iterator();
 
@@ -38,11 +35,16 @@ public abstract class Server {
 				if (key.isAcceptable()) {
 					onAccept(key);
 				}
-				if (key.isReadable()) {
-					onRead(buffer, key);
-				}
 				if (key.isConnectable()) {
 					onConnect(key);
+				}
+				if (key.isReadable()) {
+					ByteBuffer buffer = ByteBuffer.allocate(1024);
+					key.attach(buffer);
+					onRead(key);
+				}
+				if(key.isWritable()){
+					onWrite(key);
 				}
 			}
 		}
@@ -70,6 +72,13 @@ public abstract class Server {
 		socketChannel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
 	}
 
-	public void onRead(ByteBuffer buffer, SelectionKey key) throws IOException {
+	public void onRead(SelectionKey key) throws IOException {
+	}
+
+	public void onWrite(SelectionKey key) throws IOException {
+		SocketChannel channel = (SocketChannel) key.channel();
+		ByteBuffer buffer = (ByteBuffer) key.attachment();
+
+		key.interestOps(key.interestOps() & ~SelectionKey.OP_WRITE); // 注销写事件
 	}
 }
