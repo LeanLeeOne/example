@@ -57,13 +57,9 @@ public abstract class Server {
 
 	public void onAccept(SelectionKey key) throws IOException {
 		ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
-
-		// 服务器会为每个新连接创建一个 SocketChannel
-		SocketChannel socketChannel = serverSocketChannel.accept();
-		socketChannel.configureBlocking(false);
-
-		// 这个新连接主要用于从客户端读取数据
-		socketChannel.register(key.selector(), SelectionKey.OP_READ);
+		SocketChannel socketChannel = serverSocketChannel.accept(); // 服务器会为每个新连接创建一个 SocketChannel
+		socketChannel.configureBlocking(false); // 设置为非阻塞
+		socketChannel.register(key.selector(), SelectionKey.OP_READ); // 这个新连接主要用于从客户端读取数据
 	}
 
 	// todo 服务端不会触发Connect事件

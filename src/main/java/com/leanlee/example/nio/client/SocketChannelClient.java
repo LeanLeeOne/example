@@ -43,7 +43,7 @@ public class SocketChannelClient {
 
 	public void onConnect(SelectionKey key) throws IOException {
 		SocketChannel channel = (SocketChannel) key.channel(); // 连接建立或者连接建立不成功
-		if (channel.finishConnect()) { //完成连接的建立
+		if (channel.finishConnect()) { // 确保完成连接的建立
 			ZonedDateTime zdt = ZonedDateTime.now();
 			var formatter = DateTimeFormatter.ofPattern("mm:ss.SSS");
 			String s = String.format(SocketClient.MESSAGE_FORMAT, 2, formatter.format(zdt));
