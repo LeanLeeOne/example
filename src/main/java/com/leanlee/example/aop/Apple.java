@@ -1,4 +1,4 @@
-package com.leanlee.example;
+package com.leanlee.example.aop;
 
 import org.springframework.stereotype.Component;
 

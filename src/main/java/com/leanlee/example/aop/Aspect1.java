@@ -1,4 +1,4 @@
-package com.leanlee.example;
+package com.leanlee.example.aop;
 
 
 import java.lang.annotation.ElementType;
@@ -8,5 +8,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Aspect2 {
+public @interface Aspect1 {
+	String value() default "victory";
 }

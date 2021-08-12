@@ -1,4 +1,4 @@
-package com.leanlee.example;
+package com.leanlee.example.aop;
 
 public interface Fruit {
 	void print();

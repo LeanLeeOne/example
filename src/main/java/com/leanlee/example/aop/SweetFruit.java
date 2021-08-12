@@ -1,4 +1,4 @@
-package com.leanlee.example;
+package com.leanlee.example.aop;
 
 @Aspect2
 public class SweetFruit implements Fruit {
