@@ -62,7 +62,7 @@ public abstract class Server {
 		socketChannel.register(key.selector(), SelectionKey.OP_READ); // 这个新连接主要用于从客户端读取数据
 	}
 
-	// todo 服务端不会触发Connect事件
+	// 服务端不会触发Connect事件
 	public void onConnect(SelectionKey key) throws IOException {
 		SocketChannel socketChannel = (SocketChannel) key.channel();
 		if (socketChannel.isConnectionPending()) {

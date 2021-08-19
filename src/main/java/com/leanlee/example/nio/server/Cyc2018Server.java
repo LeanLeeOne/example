@@ -20,7 +20,7 @@ public class Cyc2018Server extends Server {
 		SocketChannel channel = (SocketChannel) key.channel();
 		ByteBuffer buffer = (ByteBuffer) key.attachment();
 
-		while (true) { // todo 这个循环
+		while (true) { // 显然，死循环会造成阻塞，违背并发的本愿。
 			StringBuilder data = new StringBuilder();
 			int n = channel.read(buffer);
 			if (n == -1) {
