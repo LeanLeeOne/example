@@ -25,7 +25,7 @@ public class HumanAspect {
 	}
 
 	@Before("target(human)")
-	void targetHuman(JoinPoint joinPoint, Human human) {
+	void targetHuman(Human human) {
 		System.out.println("target, Human");
 	}
 
@@ -35,12 +35,12 @@ public class HumanAspect {
 	}
 
 	@Before("target(man)")
-	void targetMan(JoinPoint joinPoint, Man man) {
+	void targetMan(Man man) {
 		System.out.println("target, Man");
 	}
 
 	@Before("@within(aHuman)")
-	void atWithinHuman(JoinPoint joinPoint, com.leanlee.example.aop.AnnotationHuman aHuman) {
+	void atWithinHuman(com.leanlee.example.aop.AnnotationHuman aHuman) {
 		System.out.println("@within, AnnotationHuman");
 	}
 
@@ -50,22 +50,22 @@ public class HumanAspect {
 	 * 此时需要使用“within”等指示器缩小范围。
 	 */
 	@Before("within(com.leanlee.example.aop.*) && @target(aHuman)")
-	void atTargetHuman(JoinPoint joinPoint, com.leanlee.example.aop.AnnotationHuman aHuman) {
+	void atTargetHuman(com.leanlee.example.aop.AnnotationHuman aHuman) {
 		System.out.println("@target, AnnotationHuman");
 	}
 
 	@Before("@within(aMan)")
-	void atWithinMan(JoinPoint joinPoint, com.leanlee.example.aop.AnnotationMan aMan) {
+	void atWithinMan(com.leanlee.example.aop.AnnotationMan aMan) {
 		System.out.println("@within, AnnotationMan");
 	}
 
 	@Before("within(com.leanlee.example.aop.*) && @target(aMan)")
-	void atTargetMan(JoinPoint joinPoint, com.leanlee.example.aop.AnnotationMan aMan) {
+	void atTargetMan(com.leanlee.example.aop.AnnotationMan aMan) {
 		System.out.println("@target, AnnotationMan");
 	}
 
 	@Before("@annotation(a)")
-	void atAnnotation(JoinPoint joinPoint, AnnotationMan a) {
+	void atAnnotation(AnnotationMan a) {
 		System.out.println("@annotation");
 	}
 
