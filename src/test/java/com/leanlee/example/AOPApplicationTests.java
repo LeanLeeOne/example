@@ -1,6 +1,6 @@
 package com.leanlee.example;
 
-import com.leanlee.example.aop.Apple;
+import com.leanlee.example.aop.Man;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AOPApplicationTests {
 
 	@Autowired
-	Apple apple;
+	Man man;
 
 	@Test
 	void contextLoads() {
-		apple.print();
-		apple.p1();
-		apple.p2();
+		man.say();
+		man.eat();
+		man.fuck();
 	}
 
 }
