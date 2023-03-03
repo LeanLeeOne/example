@@ -17,7 +17,7 @@ public class WordCounter {
 	void countWord() {
 		Date date = new Date();
 
-		String path = "E:\\markdown";
+		String path = "E:\\notes";
 		Directory directory = new Directory();
 		int count = directory.setPath(path).work();
 		System.out.println(String.format(Directory.TOTAL, directory.getSize(), count));
